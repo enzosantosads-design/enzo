@@ -454,6 +454,11 @@ nav.nav-claro .nl-n{color:#111111!important}
 nav.nav-claro .nl-s{color:#888888!important}
 nav.nav-claro .nls a{color:#555555!important}
 
+
+.vid-som{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.6);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:background .2s}
+.vid-som:hover{background:rgba(224,90,0,0.85)}
+.vid-som svg{display:block}
+
 </style>
 </head>
 <body>
@@ -707,7 +712,13 @@ nav.nav-claro .nls a{color:#555555!important}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <polygon points="8,5 20,12 8,19" fill="white"/>
             </svg>
-          </div>
+            <button class="vid-som" onclick="var v=this.parentElement.querySelector('video');v.muted=!v.muted;this.innerHTML=v.muted?'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'white\'><path d=\'M8 2L4 5H1v6h3l4 3V2zm4.5 2.5a6 6 0 0 1 0 7M11 5.5a4 4 0 0 1 0 5M9.5 7a2 2 0 0 1 0 2\'/><line x1=\'1\' y1=\'1\' x2=\'15\' y2=\'15\' stroke=\'white\' stroke-width=\'1.5\'/></svg>':'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'white\' stroke-width=\'1.5\'><path d=\'M8 2L4 5H1v6h3l4 3V2z\' fill=\'white\'/><path d=\'M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10\'/></svg>'">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
+            <path d="M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10"/>
+          </svg>
+        </button>
+      </div>
         </div>
       </div>
       <div class="arq-f3" style="position:relative;overflow:hidden;background:#000">
@@ -722,7 +733,13 @@ nav.nav-claro .nls a{color:#555555!important}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <polygon points="8,5 20,12 8,19" fill="white"/>
             </svg>
-          </div>
+            <button class="vid-som" onclick="var v=this.parentElement.querySelector('video');v.muted=!v.muted;this.innerHTML=v.muted?'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'white\'><path d=\'M8 2L4 5H1v6h3l4 3V2zm4.5 2.5a6 6 0 0 1 0 7M11 5.5a4 4 0 0 1 0 5M9.5 7a2 2 0 0 1 0 2\'/><line x1=\'1\' y1=\'1\' x2=\'15\' y2=\'15\' stroke=\'white\' stroke-width=\'1.5\'/></svg>':'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'white\' stroke-width=\'1.5\'><path d=\'M8 2L4 5H1v6h3l4 3V2z\' fill=\'white\'/><path d=\'M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10\'/></svg>'">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
+            <path d="M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10"/>
+          </svg>
+        </button>
+      </div>
         </div>
       </div>
       <div class="arq-f3" style="position:relative;overflow:hidden;background:#000">
