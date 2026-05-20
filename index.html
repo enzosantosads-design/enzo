@@ -712,8 +712,13 @@ nav.nav-claro .nls a{color:#555555!important}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <polygon points="8,5 20,12 8,19" fill="white"/>
             </svg>
-            <button class="vid-som" onclick="var v=this.parentElement.querySelector('video');v.muted=!v.muted;this.innerHTML=v.muted?'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'white\'><path d=\'M8 2L4 5H1v6h3l4 3V2zm4.5 2.5a6 6 0 0 1 0 7M11 5.5a4 4 0 0 1 0 5M9.5 7a2 2 0 0 1 0 2\'/><line x1=\'1\' y1=\'1\' x2=\'15\' y2=\'15\' stroke=\'white\' stroke-width=\'1.5\'/></svg>':'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'white\' stroke-width=\'1.5\'><path d=\'M8 2L4 5H1v6h3l4 3V2z\' fill=\'white\'/><path d=\'M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10\'/></svg>'">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+            <button class="vid-som" id="btn-som-{{i}}" onclick="toggleSom(this)">
+          <svg class="icon-muted" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
+            <line x1="10" y1="6" x2="15" y2="11" stroke="white" stroke-width="1.5"/>
+            <line x1="15" y1="6" x2="10" y2="11" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <svg class="icon-sound" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" style="display:none">
             <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
             <path d="M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10"/>
           </svg>
@@ -733,8 +738,13 @@ nav.nav-claro .nls a{color:#555555!important}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <polygon points="8,5 20,12 8,19" fill="white"/>
             </svg>
-            <button class="vid-som" onclick="var v=this.parentElement.querySelector('video');v.muted=!v.muted;this.innerHTML=v.muted?'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'white\'><path d=\'M8 2L4 5H1v6h3l4 3V2zm4.5 2.5a6 6 0 0 1 0 7M11 5.5a4 4 0 0 1 0 5M9.5 7a2 2 0 0 1 0 2\'/><line x1=\'1\' y1=\'1\' x2=\'15\' y2=\'15\' stroke=\'white\' stroke-width=\'1.5\'/></svg>':'<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'none\' stroke=\'white\' stroke-width=\'1.5\'><path d=\'M8 2L4 5H1v6h3l4 3V2z\' fill=\'white\'/><path d=\'M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10\'/></svg>'">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+            <button class="vid-som" id="btn-som-{{i}}" onclick="toggleSom(this)">
+          <svg class="icon-muted" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
+            <line x1="10" y1="6" x2="15" y2="11" stroke="white" stroke-width="1.5"/>
+            <line x1="15" y1="6" x2="10" y2="11" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <svg class="icon-sound" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" style="display:none">
             <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
             <path d="M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10"/>
           </svg>
@@ -966,6 +976,25 @@ document.querySelectorAll('.tab').forEach(btn => {
   setTimeout(init, 1500);
   window.addEventListener('load', function() { setTimeout(init, 200); });
 })();
+
+
+function toggleSom(btn) {
+  var card = btn.closest('.arq-f3');
+  var video = card.querySelector('video');
+  var iconMuted = btn.querySelector('.icon-muted');
+  var iconSound = btn.querySelector('.icon-sound');
+  
+  if (video.muted) {
+    video.muted = false;
+    video.volume = 1;
+    iconMuted.style.display = 'none';
+    iconSound.style.display = 'block';
+  } else {
+    video.muted = true;
+    iconMuted.style.display = 'block';
+    iconSound.style.display = 'none';
+  }
+}
 
 </script>
 </body>
