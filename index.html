@@ -412,19 +412,8 @@ behold-widget{display:block;width:100%}
 .arq-video-card:hover .arq-play-btn{transform:translate(-50%,-50%) scale(1.15)}
 
 
-.arq-video-wrap{position:relative;overflow:hidden}
-.arq-play-overlay{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,0.25);cursor:pointer;transition:background .2s;
-}
-.arq-play-overlay:hover{background:rgba(0,0,0,0.1)}
-.arq-play-circle{
-  width:60px;height:60px;border-radius:50%;
-  background:rgba(224,90,0,0.9);
-  display:flex;align-items:center;justify-content:center;
-  transition:transform .2s;
-}
-.arq-play-overlay:hover .arq-play-circle{transform:scale(1.1)}
+
+
 
 
 #btn-hero{background:var(--branco-puro)!important;color:#111!important}
@@ -456,10 +445,18 @@ nav.nav-claro .nls a{color:#555555!important}
 
 
 
-.vid-controles{position:absolute;bottom:12px;right:12px;display:flex;gap:8px;z-index:10}
-.vid-btn{background:rgba(0,0,0,0.6);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;flex-shrink:0}
-.vid-btn:hover{background:rgba(224,90,0,0.85)}
-.vid-btn svg{display:block;pointer-events:none}
+
+/* CARDS DE VÍDEO */
+.arq-f3{height:480px;overflow:hidden;position:relative;background:#000}
+.arq-f3 video{width:100%;height:100%;object-fit:cover;display:block}
+.arq-vid-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);cursor:pointer;transition:background .3s}
+.arq-vid-overlay:hover{background:rgba(0,0,0,0.15)}
+.arq-vid-play{width:60px;height:60px;border-radius:50%;background:rgba(224,90,0,0.9);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.arq-vid-overlay:hover .arq-vid-play{transform:scale(1.1)}
+.arq-vid-controles{position:absolute;bottom:12px;right:12px;display:flex;gap:8px;z-index:20}
+.arq-vid-btn{background:rgba(0,0,0,0.65);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.arq-vid-btn:hover{background:rgba(224,90,0,0.9)}
+.arq-vid-btn svg{display:block;pointer-events:none}
 
 </style>
 </head>
@@ -702,93 +699,112 @@ nav.nav-claro .nls a{color:#555555!important}
 
         <!-- Grid 3 fotos -->
                                             <div class="arq-fotos-3">
-      <div class="arq-f3" style="position:relative;overflow:hidden;background:#000">
-        <video 
-          muted loop playsinline
+      <div class="arq-f3">
+        <video id="vid-0" muted loop playsinline preload="metadata"
           poster="https://res.cloudinary.com/dnanrfjf5/video/upload/so_1/snapinsta.com.br-6a0b114f12e69_zw26jv.jpg"
           style="width:100%;height:100%;object-fit:cover;display:block">
           <source src="https://res.cloudinary.com/dnanrfjf5/video/upload/snapinsta.com.br-6a0b114f12e69_zw26jv.mp4" type="video/mp4"/>
         </video>
-        <div class="arq-play-overlay" onclick="var v=this.previousElementSibling;v.play();this.style.display='none'">
-          <div class="arq-play-circle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <polygon points="8,5 20,12 8,19" fill="white"/>
+        <div class="arq-vid-overlay" id="overlay-0" onclick="iniciarVideo(0)">
+          <div class="arq-vid-play">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="white">
+              <polygon points="5,2 20,11 5,20"/>
             </svg>
-            <div class="vid-controles">
-          <button class="vid-btn btn-pause" onclick="togglePause(this)">
-            <svg class="icon-pause" width="14" height="14" viewBox="0 0 14 14" fill="white">
+          </div>
+        </div>
+        <div class="arq-vid-controles" id="controles-0" style="display:none">
+          <button class="arq-vid-btn" onclick="togglePauseVid(0)">
+            <svg id="icon-pause-0" width="14" height="14" viewBox="0 0 14 14" fill="white">
               <rect x="2" y="1" width="4" height="12"/>
               <rect x="8" y="1" width="4" height="12"/>
             </svg>
-            <svg class="icon-play" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none">
+            <svg id="icon-play-0" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none">
               <polygon points="2,1 13,7 2,13"/>
             </svg>
           </button>
-          <button class="vid-btn btn-som" onclick="toggleSom(this)">
-            <svg class="icon-muted" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+          <button class="arq-vid-btn" onclick="toggleSomVid(0)">
+            <svg id="icon-muted-0" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
               <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
               <line x1="10" y1="6" x2="15" y2="11"/>
               <line x1="15" y1="6" x2="10" y2="11"/>
             </svg>
-            <svg class="icon-sound" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" style="display:none">
+            <svg id="icon-sound-0" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" style="display:none">
               <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
               <path d="M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10"/>
             </svg>
           </button>
         </div>
       </div>
-        </div>
-      </div>
-      <div class="arq-f3" style="position:relative;overflow:hidden;background:#000">
-        <video 
-          muted loop playsinline
+      <div class="arq-f3">
+        <video id="vid-1" muted loop playsinline preload="metadata"
           poster="https://res.cloudinary.com/dnanrfjf5/video/upload/so_1/snapinsta.com.br-6a0b1160468f9_mpsoh4.jpg"
           style="width:100%;height:100%;object-fit:cover;display:block">
           <source src="https://res.cloudinary.com/dnanrfjf5/video/upload/snapinsta.com.br-6a0b1160468f9_mpsoh4.mp4" type="video/mp4"/>
         </video>
-        <div class="arq-play-overlay" onclick="var v=this.previousElementSibling;v.play();this.style.display='none'">
-          <div class="arq-play-circle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <polygon points="8,5 20,12 8,19" fill="white"/>
+        <div class="arq-vid-overlay" id="overlay-1" onclick="iniciarVideo(1)">
+          <div class="arq-vid-play">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="white">
+              <polygon points="5,2 20,11 5,20"/>
             </svg>
-            <div class="vid-controles">
-          <button class="vid-btn btn-pause" onclick="togglePause(this)">
-            <svg class="icon-pause" width="14" height="14" viewBox="0 0 14 14" fill="white">
+          </div>
+        </div>
+        <div class="arq-vid-controles" id="controles-1" style="display:none">
+          <button class="arq-vid-btn" onclick="togglePauseVid(1)">
+            <svg id="icon-pause-1" width="14" height="14" viewBox="0 0 14 14" fill="white">
               <rect x="2" y="1" width="4" height="12"/>
               <rect x="8" y="1" width="4" height="12"/>
             </svg>
-            <svg class="icon-play" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none">
+            <svg id="icon-play-1" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none">
               <polygon points="2,1 13,7 2,13"/>
             </svg>
           </button>
-          <button class="vid-btn btn-som" onclick="toggleSom(this)">
-            <svg class="icon-muted" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+          <button class="arq-vid-btn" onclick="toggleSomVid(1)">
+            <svg id="icon-muted-1" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
               <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
               <line x1="10" y1="6" x2="15" y2="11"/>
               <line x1="15" y1="6" x2="10" y2="11"/>
             </svg>
-            <svg class="icon-sound" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" style="display:none">
+            <svg id="icon-sound-1" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" style="display:none">
               <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
               <path d="M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10"/>
             </svg>
           </button>
         </div>
       </div>
-        </div>
-      </div>
-      <div class="arq-f3" style="position:relative;overflow:hidden;background:#000">
-        <video 
-          muted loop playsinline
+      <div class="arq-f3">
+        <video id="vid-2" muted loop playsinline preload="metadata"
           poster="https://res.cloudinary.com/dnanrfjf5/video/upload/so_1/snapinsta.com.br-6a0b116d4f94a_ip6tym.jpg"
           style="width:100%;height:100%;object-fit:cover;display:block">
           <source src="https://res.cloudinary.com/dnanrfjf5/video/upload/snapinsta.com.br-6a0b116d4f94a_ip6tym.mp4" type="video/mp4"/>
         </video>
-        <div class="arq-play-overlay" onclick="var v=this.previousElementSibling;v.play();this.style.display='none'">
-          <div class="arq-play-circle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <polygon points="8,5 20,12 8,19" fill="white"/>
+        <div class="arq-vid-overlay" id="overlay-2" onclick="iniciarVideo(2)">
+          <div class="arq-vid-play">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="white">
+              <polygon points="5,2 20,11 5,20"/>
             </svg>
           </div>
+        </div>
+        <div class="arq-vid-controles" id="controles-2" style="display:none">
+          <button class="arq-vid-btn" onclick="togglePauseVid(2)">
+            <svg id="icon-pause-2" width="14" height="14" viewBox="0 0 14 14" fill="white">
+              <rect x="2" y="1" width="4" height="12"/>
+              <rect x="8" y="1" width="4" height="12"/>
+            </svg>
+            <svg id="icon-play-2" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none">
+              <polygon points="2,1 13,7 2,13"/>
+            </svg>
+          </button>
+          <button class="arq-vid-btn" onclick="toggleSomVid(2)">
+            <svg id="icon-muted-2" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5">
+              <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
+              <line x1="10" y1="6" x2="15" y2="11"/>
+              <line x1="15" y1="6" x2="10" y2="11"/>
+            </svg>
+            <svg id="icon-sound-2" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" style="display:none">
+              <path d="M8 2L4 5H1v6h3l4 3V2z" fill="white"/>
+              <path d="M11 5.5a4 4 0 0 1 0 5M13.5 3a7 7 0 0 1 0 10"/>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -1002,19 +1018,23 @@ document.querySelectorAll('.tab').forEach(btn => {
 })();
 
 
-function toggleSom(btn) {
-  var video = btn.closest('.arq-f3').querySelector('video');
-  var iconMuted = btn.querySelector('.icon-muted');
-  var iconSound = btn.querySelector('.icon-sound');
-  video.muted = !video.muted;
-  iconMuted.style.display = video.muted ? 'block' : 'none';
-  iconSound.style.display = video.muted ? 'none' : 'block';
+
+
+
+function iniciarVideo(i) {
+  var video = document.getElementById('vid-' + i);
+  var overlay = document.getElementById('overlay-' + i);
+  var controles = document.getElementById('controles-' + i);
+  video.play();
+  overlay.style.display = 'none';
+  controles.style.display = 'flex';
 }
 
-function togglePause(btn) {
-  var video = btn.closest('.arq-f3').querySelector('video');
-  var iconPause = btn.querySelector('.icon-pause');
-  var iconPlay = btn.querySelector('.icon-play');
+function togglePauseVid(i) {
+  var video = document.getElementById('vid-' + i);
+  var iconPause = document.getElementById('icon-pause-' + i);
+  var iconPlay = document.getElementById('icon-play-' + i);
+  var overlay = document.getElementById('overlay-' + i);
   if (video.paused) {
     video.play();
     iconPause.style.display = 'block';
@@ -1024,6 +1044,15 @@ function togglePause(btn) {
     iconPause.style.display = 'none';
     iconPlay.style.display = 'block';
   }
+}
+
+function toggleSomVid(i) {
+  var video = document.getElementById('vid-' + i);
+  var iconMuted = document.getElementById('icon-muted-' + i);
+  var iconSound = document.getElementById('icon-sound-' + i);
+  video.muted = !video.muted;
+  iconMuted.style.display = video.muted ? 'block' : 'none';
+  iconSound.style.display = video.muted ? 'none' : 'block';
 }
 
 </script>
