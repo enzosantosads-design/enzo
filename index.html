@@ -383,7 +383,7 @@ behold-widget{display:block;width:100%}
 .arq-f3-placeholder span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .arq-f3 img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .arq-f3:hover img{transform:scale(1.04)}
-@media(max-width:600px){.arq-fotos-3{grid-template-columns:1fr}.arq-f3{height:300px}}
+@media(max-width:600px){.arq-fotos-3{grid-template-columns:1fr!important}.arq-f3{height:300px}}
 
 .btn-ring{position:absolute;top:0;left:0;pointer-events:none;z-index:2;overflow:visible}
 
@@ -460,6 +460,11 @@ nav.nav-claro .nls a{color:#555555!important}
 .arq-vid-btn{background:rgba(0,0,0,0.65);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
 .arq-vid-btn:hover{background:rgba(224,90,0,0.9)}
 .arq-vid-btn svg{display:block;pointer-events:none}
+
+@media(max-width:600px){
+  .arq-fotos-3{grid-template-columns:1fr!important}
+  .arq-f3{height:300px!important}
+}
 
 </style>
 </head>
